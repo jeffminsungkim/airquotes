@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply mx-auto h-full max-w-6xl bg-[#F7F7F7];
+  }
+}
