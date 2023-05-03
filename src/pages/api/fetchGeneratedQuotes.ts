@@ -1,6 +1,6 @@
 import type { OpenAIStreamPayload } from "@/lib/OpenAIStream";
 import { OpenAIStream } from "@/lib/OpenAIStream";
-import Upstash from "@/lib/Upstash";
+import Upstash from "@/lib/upstash";
 
 export const config = {
   runtime: "edge",
