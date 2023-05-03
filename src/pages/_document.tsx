@@ -15,9 +15,9 @@ class MyDocument extends Document {
             property="og:description"
             content="Generate popular quotes in just a few seconds on airquotes.ai."
           />
-          <meta property="og:title" content="Twitter Bio Generator" />
+          <meta property="og:title" content="AI Quote Generator" />
           <meta name="twitter:card" content="summary_large_image" />
-          <meta name="twitter:title" content="Twitter Bio Generator" />
+          <meta name="twitter:title" content="AI Quote Generator" />
           <meta
             name="twitter:description"
             content="Generate popular quotes in just a few seconds on airquotes.ai."
