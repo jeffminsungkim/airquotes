@@ -32,7 +32,9 @@ const handler = async (req: Request): Promise<Response> => {
     await Upstash.redis.del(contextKey);
   }
 
-  await Upstash.redis.set<string>(contextKey, context, { ex: 1800 });
+  if (context !== "") {
+    await Upstash.redis.set<string>(contextKey, context, { ex: 1800 });
+  }
 
   const content = `${prompt} Make sure not to include any further details ${
     cachedQuotes ? `and exclude the following quotes ${previousContext}` : "."
