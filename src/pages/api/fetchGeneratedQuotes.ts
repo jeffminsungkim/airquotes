@@ -1,6 +1,5 @@
 import type { OpenAIStreamPayload } from "@/lib/OpenAIStream";
 import { OpenAIStream } from "@/lib/OpenAIStream";
-
 import Upstash from "@/lib/Upstash";
 
 export const config = {
