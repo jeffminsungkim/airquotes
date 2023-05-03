@@ -34,13 +34,11 @@ const Dropdown = ({ languageOutput, setLanguageOutput }: DropdownProps) => {
       <Select
         instanceId="langSelect"
         classNames={{
-          control: (state) => `p-0.5 w-full rounded-md`,
+          control: () => `p-0.5 w-full rounded-md`,
         }}
         styles={{
           control: (baseStyles) => ({
             ...baseStyles,
-            // This line disable the blue border
-            // boxShadow: 'none',
             borderColor: "none",
             cursor: "pointer",
             "&:hover": {
@@ -59,12 +57,10 @@ const Dropdown = ({ languageOutput, setLanguageOutput }: DropdownProps) => {
               },
             };
           },
-          clearIndicator: (baseStyles) => {
-            return {
-              ...baseStyles,
-              cursor: "pointer",
-            };
-          },
+          clearIndicator: (baseStyles) => ({
+            ...baseStyles,
+            cursor: "pointer",
+          }),
         }}
         theme={(theme) => ({
           ...theme,

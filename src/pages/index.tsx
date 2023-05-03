@@ -16,7 +16,6 @@ import Github from "@/components/Github";
 import Image from "next/image";
 import Dropdown from "@/components/Dropdown";
 import MultiSelectDropdown from "@/components/MultiSelectDropdown";
-import { promptHanlder } from "../utils/promptHandler";
 import { LoadingSpinner } from "@/components/Loading";
 
 const BounceLoader = dynamic(() => import("@/components/LoaderDots"));
@@ -24,8 +23,8 @@ const GeneratedQuote = dynamic(() => import("@/components/GeneratedQuote"));
 
 const Home: NextPage = () => {
   const [loading, setLoading] = useState(false);
-  const [generateCount, setGenerateCount] = useState(0);
   const [generatedQuotes, setGeneratedQuotes] = useState("");
+  const [prevContext, setPrevContext] = useState("");
   const [languageOutput, setLanguageOutput] = useState<
     SingleValue<LanguageOutputType>
   >({ value: "English", label: "English" });
@@ -55,7 +54,14 @@ const Home: NextPage = () => {
     setGeneratedQuotes("");
     setLoading(true);
 
-    const prompt = promptHanlder(languageOutput, vibes, generateCount);
+    console.log("prevContext", prevContext);
+
+    const lang = languageOutput ? languageOutput.value : "English";
+    const selectedVibes = vibes.map((vibe) => vibe?.value).join(", ");
+
+    const prompt = `Generate 2 ${
+      selectedVibes ? selectedVibes : "famous"
+    } quotes in ${lang} with the speaker's name.`;
 
     const response = await fetch("/api/fetchGeneratedQuotes", {
       method: "POST",
@@ -64,6 +70,7 @@ const Home: NextPage = () => {
       },
       body: JSON.stringify({
         prompt,
+        context: prevContext,
       }),
     });
 
@@ -94,7 +101,7 @@ const Home: NextPage = () => {
 
     scrollToQuotes();
     setLoading(false);
-    setGenerateCount((prev) => prev + 1);
+    setPrevContext(generatedQuotes);
     mutate();
   };
 

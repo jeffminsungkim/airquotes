@@ -10,13 +10,10 @@ type MultiSelectDropdownProps = {
 const vibes = [
   { value: "famous", label: "Famous" },
   { value: "funny", label: "Funny" },
-  { value: "euphemism", label: "Euphemism" },
   { value: "irony", label: "Irony" },
   { value: "metaphor", label: "Metaphor" },
   { value: "sarcasm", label: "Sarcasm" },
   { value: "satire", label: "Satire" },
-  { value: "movies", label: "Movies" },
-  { value: "TV shows", label: "TV Shows" },
 ];
 
 const MultiSelectDropdown = ({ setVibes }: MultiSelectDropdownProps) => {
@@ -29,13 +26,11 @@ const MultiSelectDropdown = ({ setVibes }: MultiSelectDropdownProps) => {
       <Select
         instanceId="vibeSelect"
         classNames={{
-          control: (state) => `p-0.5 w-full rounded-md`,
+          control: () => `p-0.5 w-full rounded-md`,
         }}
         styles={{
           control: (baseStyles) => ({
             ...baseStyles,
-            // This line disable the blue border
-            // boxShadow: 'none',
             borderColor: "none",
             cursor: "pointer",
             "&:hover": {
@@ -54,12 +49,10 @@ const MultiSelectDropdown = ({ setVibes }: MultiSelectDropdownProps) => {
               },
             };
           },
-          clearIndicator: (baseStyles) => {
-            return {
-              ...baseStyles,
-              cursor: "pointer",
-            };
-          },
+          clearIndicator: (baseStyles) => ({
+            ...baseStyles,
+            cursor: "pointer",
+          }),
         }}
         theme={(theme) => ({
           ...theme,
