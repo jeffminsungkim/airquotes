@@ -54,8 +54,6 @@ const Home: NextPage = () => {
     setGeneratedQuotes("");
     setLoading(true);
 
-    console.log("prevContext", prevContext);
-
     const lang = languageOutput ? languageOutput.value : "English";
     const selectedVibes = vibes.map((vibe) => vibe?.value).join(", ");
 
