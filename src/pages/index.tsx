@@ -6,7 +6,6 @@ import type { MouseEvent } from "react";
 import { toast } from "react-hot-toast";
 
 import { useRef, useState } from "react";
-import { api } from "@/utils/api";
 
 import Head from "next/head";
 import dynamic from "next/dynamic";
@@ -16,7 +15,6 @@ import Github from "@/components/Github";
 import Image from "next/image";
 import Dropdown from "@/components/Dropdown";
 import MultiSelectDropdown from "@/components/MultiSelectDropdown";
-import { LoadingSpinner } from "@/components/Loading";
 
 const BounceLoader = dynamic(() => import("@/components/LoaderDots"));
 const GeneratedQuote = dynamic(() => import("@/components/GeneratedQuote"));
@@ -34,10 +32,6 @@ const Home: NextPage = () => {
       label: "Famous",
     },
   ]);
-
-  const { data: quotes } = api.quote.getAllGeneratedQuotes.useQuery();
-
-  const { mutate } = api.quote.create.useMutation();
 
   const quoteRef = useRef<null | HTMLDivElement>(null);
 
@@ -100,7 +94,6 @@ const Home: NextPage = () => {
     scrollToQuotes();
     setLoading(false);
     setPrevContext(generatedQuotes);
-    mutate();
   };
 
   return (
@@ -126,16 +119,7 @@ const Home: NextPage = () => {
             ChatGPT
           </span>
         </h1>
-        {!quotes ? (
-          <div className="mt-5 h-5">
-            <LoadingSpinner />
-          </div>
-        ) : (
-          <p className="mt-5 h-5 text-zinc-500">{`${Intl.NumberFormat("en", {
-            notation: "compact",
-            maximumFractionDigits: 1,
-          }).format(quotes)} quotes generated so far`}</p>
-        )}
+        <p className="mt-5 h-5 text-zinc-500">{`Over 1,000 quotes generated so far`}</p>
 
         <div className="w-full max-w-xl">
           <div className="mt-10 flex items-center space-x-3">
